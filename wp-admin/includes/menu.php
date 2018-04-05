@@ -330,16 +330,16 @@ if ( !empty( $menu ) && 'wp-menu-separator' == $menu[ $last_menu_key ][ 4 ] )
 	unset( $menu[ $last_menu_key ] );
 unset( $last_menu_key );
 
-/*if ( !user_can_access_admin_page() ) {
-*/
+if ( !user_can_access_admin_page() ) {
+
 	/**
 	 * Fires when access to an admin page is denied.
 	 *
 	 * @since 2.5.0
 	 */
-/*	do_action( 'admin_page_access_denied' );
+	do_action( 'admin_page_access_denied' );
 
 	wp_die( __( 'Sorry, you are not allowed to access this page.' ), 403 );
 }
-*/
+
 $menu = add_menu_classes($menu);
