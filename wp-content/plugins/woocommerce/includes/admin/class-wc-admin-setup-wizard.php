@@ -52,7 +52,8 @@ class WC_Admin_Setup_Wizard {
 	 * Hook in tabs.
 	 */
 	public function __construct() {
-		if ( apply_filters( 'woocommerce_enable_setup_wizard', true ) && current_user_can( 'manage_woocommerce' ) ) {
+		//if ( apply_filters( 'woocommerce_enable_setup_wizard', true ) && current_user_can( 'manage_woocommerce' ) ) {
+		if ( apply_filters( 'woocommerce_enable_setup_wizard', true ) ) {
 			add_action( 'admin_menu', array( $this, 'admin_menus' ) );
 			add_action( 'admin_init', array( $this, 'setup_wizard' ) );
 		}
@@ -330,8 +331,8 @@ class WC_Admin_Setup_Wizard {
 		$state          = WC()->countries->get_base_state();
 		$country        = WC()->countries->get_base_country();
 		$postcode       = WC()->countries->get_base_postcode();
-		$currency       = get_option( 'woocommerce_currency', 'GBP' );
-		$product_type   = get_option( 'woocommerce_product_type', 'both' );
+		$currency       = get_option( 'woocommerce_currency', 'ARS' );
+		$product_type   = get_option( 'woocommerce_product_type', 'physical' );
 		$sell_in_person = get_option( 'woocommerce_sell_in_person', 'none_selected' );
 
 		if ( empty( $country ) ) {
@@ -341,6 +342,11 @@ class WC_Admin_Setup_Wizard {
 		} elseif ( empty( $state ) ) {
 			$state = '*';
 		}
+		//Club Emprendedor
+		//Por defecto aparece Santa Fe
+		$country='AR';
+		$state='S';
+		$currency='ARS';
 
 		$locale_info         = include WC()->plugin_path() . '/i18n/locale-info.php';
 		$currency_by_country = wp_list_pluck( $locale_info, 'currency_code' );
@@ -358,6 +364,7 @@ class WC_Admin_Setup_Wizard {
 				data-placeholder="<?php esc_attr_e( 'Choose a country&hellip;', 'woocommerce' ); ?>"
 				aria-label="<?php esc_attr_e( 'Country', 'woocommerce' ); ?>"
 				class="location-input wc-enhanced-select dropdown"
+				default="AR:S"
 			>
 					<?php WC()->countries->country_dropdown_options( $country, $state ); ?>
 			</select>
@@ -1277,12 +1284,14 @@ class WC_Admin_Setup_Wizard {
 	 */
 	protected function get_wizard_manual_payment_gateways() {
 		$gateways = array(
-			'cheque' => array(
+			//Club de emprendedores
+			//Comento el pago por cheque
+			/*'cheque' => array(
 				'name'        => _x( 'Check payments', 'Check payment method', 'woocommerce' ),
 				'description' => __( 'A simple offline gateway that lets you accept a check as method of payment.', 'woocommerce' ),
 				'image'       => '',
 				'class'       => '',
-			),
+			),*/
 			'bacs'   => array(
 				'name'        => __( 'Bank transfer (BACS) payments', 'woocommerce' ),
 				'description' => __( 'A simple offline gateway that lets you accept BACS payment.', 'woocommerce' ),
