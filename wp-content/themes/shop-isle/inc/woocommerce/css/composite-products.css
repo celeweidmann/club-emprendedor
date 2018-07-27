@@ -1,22 +1,18 @@
 .composite_summary .summary_element .summary_element_wrapper {
-	-webkit-box-shadow: 0 0 0 4px transparent;
 	box-shadow: 0 0 0 4px transparent;
 }
 
 .composite_summary .summary_element .summary_element_wrapper.selected,
 .composite_summary .summary_element .summary_element_wrapper.selected:hover {
-	-webkit-box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
 	box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
 }
 
 .composite_summary .summary_element .summary_element_wrapper:hover {
-	-webkit-box-shadow: 0 0 0 4px rgba(0,0,0,0.03);
 	box-shadow: 0 0 0 4px rgba(0,0,0,0.03);
 }
 
 .composite_summary .summary_element .summary_element_wrapper.disabled,
 .composite_summary .summary_element .summary_element_wrapper.disabled:hover {
-	-webkit-box-shadow: 0 0 0 4px transparent;
 	box-shadow: 0 0 0 4px transparent;
 }
 
@@ -72,24 +68,20 @@
 
 .single-product div.product .component_selections .component_option_thumbnails .component_option_thumbnail {
 	margin-left: 5px;
-	-webkit-box-shadow: 0 0 0 4px transparent;
 	box-shadow: 0 0 0 4px transparent;
 }
 
 .single-product div.product .component_selections .component_option_thumbnails .component_option_thumbnail.selected,
 .single-product div.product .component_selections .component_option_thumbnails .component_option_thumbnail.selected:hover {
-	-webkit-box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
 	box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
 }
 
 .single-product div.product .component_selections .component_option_thumbnails .component_option_thumbnail:hover {
-	-webkit-box-shadow: 0 0 0 4px rgba(0,0,0,0.03);
 	box-shadow: 0 0 0 4px rgba(0,0,0,0.03);
 }
 
 .single-product div.product .component_selections .component_option_thumbnails .component_option_thumbnail.disabled,
 .single-product div.product .component_selections .component_option_thumbnails .component_option_thumbnail.disabled:hover {
-	-webkit-box-shadow: 0 0 0 4px transparent;
 	box-shadow: 0 0 0 4px transparent;
 }
 

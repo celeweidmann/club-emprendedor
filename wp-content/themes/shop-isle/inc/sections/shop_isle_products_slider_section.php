@@ -11,7 +11,7 @@ if ( ! empty( $shop_isle_products_slider_hide ) && (bool) $shop_isle_products_sl
 	return;
 }
 
-echo '<section class="home-product-slider">';
+echo '<section id="products-slider" class="home-product-slider">';
 
 
 echo '<div class="container">';
@@ -101,8 +101,8 @@ if ( ! empty( $shop_isle_products_slider_title ) ) :
 		if ( $shop_isle_products_slider_loop->have_posts() ) :
 
 			$rtl_slider      = apply_filters( 'shop_isle_products_slider_section_rtl', 'false' );
-			$number_of_items = apply_filters( 'shop_isle_products_slider_section_items', 5 );
-			$pagination      = apply_filters( 'shop_isle_products_slider_section_pagination', 'false' );
+			$number_of_items = $shop_isle_products_slider_loop->found_posts;
+			$pagination      = apply_filters( 'shop_isle_products_slider_section_pagination', 'true' );
 			$navigation      = apply_filters( 'shop_isle_products_slider_section_navigation', 'false' );
 
 			echo '<div class="row">';
@@ -174,8 +174,8 @@ else :
 	if ( $shop_isle_products_slider_loop->have_posts() ) :
 
 		$rtl_slider      = apply_filters( 'shop_isle_products_slider_section_rtl', 'false' );
-		$number_of_items = apply_filters( 'shop_isle_products_slider_section_items', 5 );
-		$pagination      = apply_filters( 'shop_isle_products_slider_section_pagination', 'false' );
+		$number_of_items = $shop_isle_products_slider_loop->found_posts;
+		$pagination      = apply_filters( 'shop_isle_products_slider_section_pagination', 'true' );
 		$navigation      = apply_filters( 'shop_isle_products_slider_section_navigation', 'false' );
 		echo '<div class="row">';
 

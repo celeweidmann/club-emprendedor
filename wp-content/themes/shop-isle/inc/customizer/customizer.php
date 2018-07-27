@@ -31,6 +31,15 @@ function shop_isle_customize_register( $wp_customize ) {
 			'title'    => esc_html__( 'Frontpage sections', 'shop-isle' ),
 		)
 	);
+
+	/* Enqueue files for Scroll to top on front page sections */
+	if ( file_exists( get_template_directory() . '/inc/customizer/customizer-scroll/class/class-shopisle-customize-control-scroll.php' ) ) {
+		require_once get_template_directory() . '/inc/customizer/customizer-scroll/class/class-shopisle-customize-control-scroll.php';
+	}
+
+	if ( class_exists( 'Shop_Isle_Customize_Control_Scroll' ) ) {
+		$scroller = new Shop_Isle_Customize_Control_Scroll;
+	}
 }
 /**
  * Repeater Sanitization function

@@ -1216,7 +1216,6 @@ function wpmu_create_blog( $domain, $path, $title, $user_id, $meta = array(), $n
 	wp_install_defaults($user_id);
 
 	add_user_to_blog($blog_id, $user_id, 'administrator');
-	//add_user_to_blog($blog_id, $user_id, 'shop_manager');
 
 	foreach ( $meta as $key => $value ) {
 		if ( in_array( $key, array( 'public', 'archived', 'mature', 'spam', 'deleted', 'lang_id' ) ) )

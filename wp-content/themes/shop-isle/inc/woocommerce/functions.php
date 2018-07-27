@@ -6,7 +6,6 @@
  * @subpackage Shop Isle
  */
 
-
 if ( ! function_exists( 'shop_isle_before_content' ) ) {
 	/**
 	 * Before Content
@@ -16,9 +15,11 @@ if ( ! function_exists( 'shop_isle_before_content' ) ) {
 	 * @return  void
 	 */
 	function shop_isle_before_content() {
-		?>
-		<div class="main">
-			<?php
+		echo '<div class="main">';
+		/* Used for Dokan plugin - individual vendor page */
+		if ( in_array( 'dokan-store', get_body_class() ) ) {
+			echo '<section class="page-module-content module"><div class="container">';
+		}
 	}
 }
 
@@ -31,6 +32,12 @@ if ( ! function_exists( 'shop_isle_after_content' ) ) {
 	 * @return  void
 	 */
 	function shop_isle_after_content() {
+
+		/* Used for Dokan plugin - individual vendor page */
+		if ( in_array( 'dokan-store', get_body_class() ) ) {
+			echo '</div></section>';
+		}
+
 		?>
 		</div><!-- .main -->
 
@@ -59,6 +66,9 @@ if ( ! function_exists( 'shop_isle_shop_page_wrapper' ) ) {
 					if ( is_active_sidebar( 'shop-isle-sidebar-shop-archive' ) ) :
 					?>
 
+							<span class="shop-isle-sidebar-open">
+								<span class="icon-filter"></span>
+							</span>
 							<div class="col-sm-9 shop-with-sidebar" id="shop-isle-blog-container">
 
 						<?php endif; ?>
@@ -113,6 +123,9 @@ if ( ! function_exists( 'shop_isle_shop_page_wrapper_end' ) ) {
 
 				<!-- Sidebar column start -->
 				<div class="col-sm-3 col-md-3 sidebar sidebar-shop">
+					<span class="shop-isle-sidebar-close">
+						<span class="icon-close"></span>
+					</span>
 					<?php do_action( 'shop_isle_sidebar_shop_archive' ); ?>
 				</div>
 				<!-- Sidebar column end -->
@@ -431,8 +444,8 @@ function shop_isle_products_slider_on_single_page() {
 			if ( $shop_isle_products_slider_loop->have_posts() ) :
 
 				$rtl_slider      = apply_filters( 'shop_isle_products_slider_single_rtl', 'false' );
-				$number_of_items = apply_filters( 'shop_isle_products_slider_single_items', 5 );
-				$pagination      = apply_filters( 'shop_isle_products_slider_single_pagination', 'false' );
+				$number_of_items = $shop_isle_products_slider_loop->found_posts;
+				$pagination      = apply_filters( 'shop_isle_products_slider_single_pagination', 'true' );
 				$navigation      = apply_filters( 'shop_isle_products_slider_single_navigation', 'false' );
 
 				echo '<div class="row">';
@@ -492,8 +505,8 @@ function shop_isle_products_slider_on_single_page() {
 					if ( $shop_isle_products_slider_loop->have_posts() ) :
 
 						$rtl_slider      = apply_filters( 'shop_isle_products_slider_single_rtl', 'false' );
-						$number_of_items = apply_filters( 'shop_isle_products_slider_single_items', 5 );
-						$pagination      = apply_filters( 'shop_isle_products_slider_single_pagination', 'false' );
+						$number_of_items = $shop_isle_products_slider_loop->found_posts;
+						$pagination      = apply_filters( 'shop_isle_products_slider_single_pagination', 'true' );
 						$navigation      = apply_filters( 'shop_isle_products_slider_single_navigation', 'false' );
 
 						echo '<div class="row">';
@@ -565,6 +578,10 @@ if ( ! function_exists( 'shop_isle_search_products_no_results_wrapper' ) ) {
 		if ( is_search() && in_array( 'woocommerce', $shop_isle_body_classes ) && in_array( 'search-no-results', $shop_isle_body_classes ) ) {
 			echo '<section class="module-small module-small-shop">';
 				echo '<div class="container">';
+			if ( function_exists( 'woocommerce_breadcrumb' ) ) {
+				woocommerce_breadcrumb(); }
+			if ( is_active_sidebar( 'shop-isle-sidebar-shop-archive' ) ) {
+				echo '<div class="col-sm-9 shop-with-sidebar">'; }
 		}
 	}
 }
@@ -578,7 +595,15 @@ if ( ! function_exists( 'shop_isle_search_products_no_results_wrapper_end' ) ) {
 		$shop_isle_body_classes = get_body_class();
 
 		if ( is_search() && in_array( 'woocommerce', $shop_isle_body_classes ) && in_array( 'search-no-results', $shop_isle_body_classes ) ) {
-				echo '</div><!-- .container -->';
+
+			if ( is_active_sidebar( 'shop-isle-sidebar-shop-archive' ) ) {
+				echo '</div>';
+				echo '<div class="col-sm-3 col-md-3 sidebar sidebar-shop">';
+				do_action( 'shop_isle_sidebar_shop_archive' );
+				echo '</div>';
+			}
+
+			echo '</div><!-- .container -->';
 			echo '</section><!-- .module-small -->';
 		}
 	}
@@ -599,7 +624,7 @@ if ( ! function_exists( 'shop_isle_loop_product_thumbnail' ) ) {
 	 * Get the product thumbnail, or the placeholder if not set.
 	 */
 	function shop_isle_loop_product_thumbnail() {
-		global $product;
+		global $post,$product;
 		$image_size = 'shop_catalog';
 
 		if ( function_exists( 'method_exists' ) && method_exists( $product, 'get_gallery_image_ids' ) ) {
@@ -611,7 +636,7 @@ if ( ! function_exists( 'shop_isle_loop_product_thumbnail' ) ) {
 		if ( has_post_thumbnail() ) {
 			if ( function_exists( 'wc_get_product_attachment_props' ) ) {
 
-				$props      = wc_get_product_attachment_props( get_post_thumbnail_id(), $product );
+				$props      = wc_get_product_attachment_props( get_post_thumbnail_id(), $post );
 				$product_id = get_the_ID();
 				echo get_the_post_thumbnail(
 					$product_id, $image_size, array(
@@ -704,3 +729,32 @@ function shop_isle_outofstock_notify_on_archives() {
 		}
 	}
 }
+
+/**
+ * Add compatibility with WooCommerce Product Images customizer controls.
+ */
+function shop_isle_set_woo_image_sizes() {
+
+	$execute = get_option( 'shop_isle_update_woocommerce_customizer_controls', false );
+	if ( $execute !== false ) {
+		return;
+	}
+
+	update_option( 'woocommerce_thumbnail_cropping', 'custom' );
+	update_option( 'woocommerce_thumbnail_cropping_custom_width', '20' );
+	update_option( 'woocommerce_thumbnail_cropping_custom_height', '25' );
+
+	if ( class_exists( 'WC_Regenerate_Images' ) ) {
+		$regenerate_obj = new WC_Regenerate_Images();
+		$regenerate_obj::init();
+		if ( method_exists( $regenerate_obj, 'maybe_regenerate_images' ) ) {
+			$regenerate_obj::maybe_regenerate_images();
+		} elseif ( method_exists( $regenerate_obj, 'maybe_regenerate_images_option_update' ) ) {
+			// Force woocommerce 3.3.1 to regenerate images
+			$regenerate_obj::maybe_regenerate_images_option_update( 1, 2, '' );
+		}
+	}
+
+	update_option( 'shop_isle_update_woocommerce_customizer_controls', true );
+}
+add_action( 'after_setup_theme', 'shop_isle_set_woo_image_sizes', 10 );

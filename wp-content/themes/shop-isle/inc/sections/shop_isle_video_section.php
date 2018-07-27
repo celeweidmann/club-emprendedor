@@ -9,7 +9,7 @@
 $shop_isle_video_hide = get_theme_mod( 'shop_isle_video_hide', false );
 if ( ! empty( $shop_isle_video_hide ) && (bool) $shop_isle_video_hide === true ) {
 	if ( is_customize_preview() ) {
-		echo '<section class="module module-video bg-dark-30 si-hidden-in-customizer"></section>';
+		echo '<section id="video" class="module module-video bg-dark-30 si-hidden-in-customizer"></section>';
 	}
 	return;
 }
@@ -23,9 +23,9 @@ if ( empty( $shop_isle_yt_thumbnail ) ) {
 }
 
 if ( isset( $shop_isle_video_hide ) && $shop_isle_video_hide != 1 && ! empty( $shop_isle_yt_link ) ) :
-	echo '<section class="module module-video bg-dark-30">';
+	echo '<section id="video" class="module module-video bg-dark-30">';
 elseif ( ! empty( $shop_isle_yt_link ) && is_customize_preview() ) :
-	echo '<section class="module module-video bg-dark-30 shop_isle_hidden_if_not_customizer">';
+	echo '<section id="video" class="module module-video bg-dark-30 shop_isle_hidden_if_not_customizer">';
 endif;
 
 if ( ( isset( $shop_isle_video_hide ) && $shop_isle_video_hide != 1 && ! empty( $shop_isle_yt_link ) ) || ( ! empty( $shop_isle_yt_link ) && is_customize_preview() ) ) :

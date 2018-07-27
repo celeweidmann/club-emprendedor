@@ -1,4 +1,68 @@
 
+ ### v2.2.39 - 2018-07-13 
+ **Changes:** 
+ * Transformed the sidebar into a flyout menu on the Shop page, on mobile devices
+* Fixed problem with some uppercase inputs on the Cart and Checkout pages
+* Added compatibility with the latest WooCommerce image size options
+* Fixed issue with license appearing in the lite version
+* Fixed compatibility issues with the contact form plugins checkbox fields
+ 
+ ### v2.2.38 - 2018-06-27 
+ **Changes:** 
+ * Fixed notice for wc_get_cart_url
+ 
+ ### v2.2.37 - 2018-06-22 
+ **Changes:** 
+ * Changed the products layout on mobile to display two products per row
+* Updated the Add to cart products behavior on mobile devices
+* Fixed responsive issues for the Cart and Checkout pages when using the Full-width template
+* Fixed issues with the No product found page
+* Improved customizer UX
+ 
+### 2.2.36 - 24/04/2018
+**Changes:** 
+- Fixed alignment issue on the contact page for the headings and the contact form
+- Improved Cart and Checkout pages layouts
+- Improved entire layout in tablet mode
+- Fixed small visual problems with the most used widgets
+- Updated smooth scroll library to fix notice in Chrome console
+- Fixed problems with product images wrong loading when a product has multiple gallery images
+- Compatibility with Dokan Multivendor Marketplace plugin
+- Fixed undefined notice on the shop page
+- Added navigation to the Products slider section and other small improvements
+
+### 2.2.35 - 14/03/2018
+**Changes:** 
+- Fixed alignment issue with the navigation causing responsive problems on the Shop Page
+- Fixed problem with price showing behind the Add to cart button
+- Fixed problem on iOS with the Add a product review process
+- Improved Customizer UX by using selective refresh for the controls
+
+### 2.2.34 - 05/02/2018
+**Changes:** 
+- Fixed product gallery compatibility issue with WooCommerce 3.3
+- Improved the checkout page layout
+
+### 2.2.33 - 26/01/2018
+**Changes:** 
+- Changed Big Title/Slider section main div to an h1 tag for SEO purposes and lowered the letter spacing
+- Enqueue smooth scroll script only for different browsers than chrome
+
+### 2.2.32 - 05/12/2017
+**Changes:** 
+- Fixed compatibility issues with latest WooCommerce version causing products to not show on frontpage
+- Fixed issue with Products categories section not linking to the appropriate categories.
+
+### 2.2.31 - 20/11/2017
+**Changes:** 
+- [Shop Isle PRO] Fixed undefined ID in the shortcode section
+
+### 2.2.30 - 15/11/2017
+**Changes:** 
+- Fixed Big title to slider migration when Big title is empty
+- Fixed problem with hidden labels in the Color control in WordPress 4.9
+- [Shop Isle PRO] New Very Top Bar section
+
 ### 2.2.29 - 25/10/2017
 **Changes:** 
 - Use featured image as header of pages for all page templates

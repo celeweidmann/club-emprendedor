@@ -13,9 +13,9 @@
 		$shop_isle_banners_title = get_theme_mod( 'shop_isle_banners_title' );
 
 if ( isset( $shop_isle_banners_hide ) && $shop_isle_banners_hide != 1 ) :
-	echo '<section class="module-small home-banners">';
+	echo '<section id="banners" class="module-small home-banners">';
 		elseif ( is_customize_preview() ) :
-			echo '<section class="module-small home-banners si-hidden-in-customizer"></section>';
+			echo '<section id="banners" class="module-small home-banners si-hidden-in-customizer"></section>';
 			return;
 		endif;
 

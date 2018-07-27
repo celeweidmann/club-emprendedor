@@ -112,6 +112,28 @@
 			}
 
 			/* ---------------------------------------------- /*
+			* Woocommerce Shop Sidebar
+			/* ---------------------------------------------- */
+
+			if ( $( '.sidebar-shop' ).length > 0 ) {
+				var sidebarOrientation = 'left';
+				if ( $( 'body.rtl' ).length !== 0 ) {
+                    sidebarOrientation = 'right';
+                }
+                $( '.shop-isle-sidebar-open' ).click(function(){
+					$( '.sidebar-shop' ).css( sidebarOrientation, '0' );
+				})	
+				$( '.shop-isle-sidebar-close' ).click(function(){
+						$( '.sidebar-shop' ).css(sidebarOrientation, '-100%');
+				})	
+			}
+			else {
+				if ( $(window).width() <= 768 ) {
+					$( '.woocommerce-ordering' ).css( 'width', '100%' );
+				}
+			}
+			
+			/* ---------------------------------------------- /*
 			* Youtube video background
 			/* ---------------------------------------------- */
 
@@ -166,7 +188,7 @@
 			/* ---------------------------------------------- */
 
 			function navbarSubmenu(width) {
-				if (width > 767) {
+				if (width > 768) {
 					$( '.navbar-custom .navbar-nav > li.menu-item-has-children' ).on(
 						'click mouseover', function() {
 							var MenuLeftOffset  = $( '.sub-menu', $( this ) ).offset().left;
@@ -190,11 +212,11 @@
 			}
 
 			/* ---------------------------------------------- /*
-			* Navbar hover dropdown on desctop
+			* Navbar hover dropdown on desktop
 			/* ---------------------------------------------- */
 
 			function hoverDropdown(width, mobileTest) {
-				if ((width > 767) && (mobileTest !== true)) {
+				if ((width > 768) && (mobileTest !== true)) {
 					$( '.navbar-custom .navbar-nav > li, .navbar-custom li.dropdown > ul > li' ).removeClass( 'open' );
 					var delay = 0;
 					var setTimeoutConst;
@@ -271,7 +293,7 @@
 					animation: 'slide',
 					smoothHeight: true,
 				}
-			);
+			);	
 
 			/* ---------------------------------------------- /*
 			* Owl slider
@@ -281,13 +303,11 @@
 				function() {
 
 					// Check items number
-					var items;
+					var items = 5;
 					if ($( this ).data( 'items' ) > 0) {
 						items = $( this ).data( 'items' );
-					} else {
-						items = 4;
 					}
-
+					
 					// Check pagination true/false
 					var pagination;
 					if (($( this ).data( 'pagination' ) > 0) && ($( this ).data( 'pagination' ) === true)) {
@@ -315,31 +335,31 @@
 					// Build carousel
 					$( this ).owlCarousel(
 						{
-							loop:true,
+							loop: (items > 5) ? true:false,
 							autoplay:true,
-							autoplayTimeout:5000,
-							autoplayHoverPause:true,
+							autoplayTimeout: 5000,
+							autoplayHoverPause: true,
 							dots: pagination,
 							dotsSpeed: 400,
 							items: items,
 							rtl: rtl,
 							nav: false,
-							navText: ['', ''],
-							responsiveClass:true,
+							dotsEach: 1,
+							navText: ['',''],
+							responsiveClass: true,
 							responsive:{
 								0:{
-									items:1,
+									items:2,
 								},
-								600:{
-									items:3,
+								768: {
+									items: 2,
 								},
-								1000:{
-									items:5,
+								992: {
+									items: 5,
 								}
 							}
 						}
 					);
-
 				}
 			);
 
@@ -433,7 +453,7 @@
 			$menuWrap            = $( '.header-menu-wrap' );
 			$menuBtnChildren.click(
 				function(event){
-					if ( mobileTest && ! $( this ).hasClass( submenuOpenClass ) && window.innerWidth > 767 ) {
+					if ( mobileTest && ! $( this ).hasClass( submenuOpenClass ) && window.innerWidth > 768 ) {
 						$thisParent = $( this ).parent( 'ul' ).parent( 'li' );
 						if ( $thisParent.hasClass( submenuOpenClass ) ) {
 							$thisParent.find( '.' + submenuOpenClass ).removeClass( submenuOpenClass );
@@ -632,7 +652,7 @@
 			checkNavbarScrollPoint();
 		}
 	);
-
+	
 	// On screen scroll add scroll-related class
 	$( window ).on(
 		'scroll', function () {

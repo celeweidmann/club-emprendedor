@@ -96,6 +96,10 @@ General Styles - FlexSlider
 	height: 100%;
 }
 
+.header-with-topbar + #home .hero-slider {
+	top: 0;
+}
+
 @media screen and (min-width: 768px) {
 	#home .hero-slider {
 		position: fixed;

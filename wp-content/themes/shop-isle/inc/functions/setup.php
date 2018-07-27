@@ -13,7 +13,7 @@ define( 'SHOP_ISLE_PHP_INCLUDE', get_template_directory() . '/inc' );
  */
 
 if ( ! defined( 'SI_VERSION' ) ) {
-	define( 'SI_VERSION', '1.1.41' );
+	define( 'SI_VERSION', '1.1.45' );
 }
 
 /**
@@ -161,11 +161,22 @@ if ( ! function_exists( 'shop_isle_setup' ) ) :
 			)
 		);
 
-		// Add support for the Site Logo plugin and the site logo functionality in JetPack
-		// https://github.com/automattic/site-logo
-		// http://jetpack.me/
 		// Declare WooCommerce support
-		add_theme_support( 'woocommerce' );
+		$woocommerce_settings = apply_filters(
+			'shop_isle_woocommerce_args', array(
+				'single_image_width'            => 555,
+				'thumbnail_image_width'         => 262,
+				'gallery_thumbnail_image_width' => 160,
+				'product_grid'                  => array(
+					'default_columns' => 3,
+					'default_rows'    => 4,
+					'min_columns'     => 1,
+					'max_columns'     => 6,
+					'min_rows'        => 1,
+				),
+			)
+		);
+		add_theme_support( 'woocommerce', $woocommerce_settings );
 
 		// Declare support for title theme feature
 		add_theme_support( 'title-tag' );
@@ -316,18 +327,11 @@ function shop_isle_scripts() {
 
 	wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/assets/js/vendor/jquery.fitvids.min.js', array( 'jquery' ), '20120208', true );
 
-	global $is_chrome;
-
-	/**
-	 * As smoothscroll was added in Chrome by default, and enqueueing it again is causing issues, enqueue the script only if the browser is not Chrome
-	 */
-	if ( ! $is_chrome ) {
-		wp_enqueue_script( 'smoothscroll', get_template_directory_uri() . '/assets/js/vendor/smoothscroll.min.js', array( 'jquery' ), '20120208', true );
-	}
+	wp_enqueue_script( 'smoothscroll', get_template_directory_uri() . '/assets/js/vendor/smoothscroll.min.js', array( 'jquery' ), '20120208', true );
 
 	wp_enqueue_script( 'owl-carousel-js', get_template_directory_uri() . '/assets/js/vendor/owl.carousel.min.js', array( 'jquery' ), '2.1.8', true );
 
-	wp_enqueue_script( 'shop-isle-custom', get_template_directory_uri() . '/assets/js/custom.js', array( 'jquery', 'flexslider', 'jquery-mb-YTPlayer' ), '20120208', true );
+	wp_enqueue_script( 'shop-isle-custom', get_template_directory_uri() . '/assets/js/custom.js', array( 'jquery', 'flexslider', 'jquery-mb-YTPlayer' ), '20180411', true );
 
 	wp_enqueue_script( 'shop-isle-navigation', get_template_directory_uri() . '/js/navigation.min.js', array(), '20120208', true );
 
@@ -357,6 +361,11 @@ function shop_isle_register_required_plugins() {
 		array(
 			'name'     => 'WooCommerce',
 			'slug'     => 'woocommerce',
+			'required' => false,
+		),
+		array(
+			'name'     => 'Orbit Fox',
+			'slug'     => 'themeisle-companion',
 			'required' => false,
 		),
 	);
@@ -785,14 +794,16 @@ function shop_isle_php_style() {
 
 	if ( ! empty( $shop_isle_navbar_background ) ) {
 		echo '.page .navbar-custom, .navbar-custom, .header-shopping-cart, .navbar-custom .sub-menu, .navbar-custom .children, .header-search-input { background-color: ' . esc_attr( $shop_isle_navbar_background ) . ' !important; }';
+		echo '.navbar-cart-inner .cart-item-number { color: ' . esc_attr( $shop_isle_navbar_background ) . '; }';
 	}
 
 	if ( ! empty( $shop_isle_menu_items_color ) ) {
-		echo '.navbar-custom .nav li > a { color: ' . esc_attr( $shop_isle_menu_items_color ) . '; }';
+		echo '.navbar-custom .nav li > a, .woocommerce-mini-cart__empty-message, .dropdownmenu, .header-search-button, .navbar-cart-inner .icon-basket, .header-shopping-cart .mini_cart_item a, .header-shopping-cart .mini_cart_item .quantity, .header-shopping-cart .mini_cart_item .quantity span, .header-shopping-cart .widget_shopping_cart .product_list_widget li a.remove, .header-shopping-cart .widget_shopping_cart p.total, .header-shopping-cart .widget_shopping_cart .amount, .header-shopping-cart .widget_shopping_cart p.buttons a.wc-forward { color: ' . esc_attr( $shop_isle_menu_items_color ) . '; }';
+		echo '.navbar-cart-inner .cart-item-number { background: ' . esc_attr( $shop_isle_menu_items_color ) . '; }';
 	}
 
 	if ( ! empty( $shop_isle_menu_items_hover_color ) ) {
-		echo '.navbar-custom .nav > li > a:focus, .navbar-custom .nav > li > a:hover, .navbar-custom .nav .open > a, .navbar-custom .nav .open > a:focus, .navbar-custom .nav .open > a:hover, .navbar-custom .sub-menu > li > a:focus, .navbar-custom .sub-menu > li > a:hover { color: ' . esc_attr( $shop_isle_menu_items_hover_color ) . '; }';
+		echo '.navbar-custom .nav > li > a:focus, .navbar-custom .nav > li > a:hover, .navbar-custom .nav .open > a, .navbar-custom .nav .open > a:focus, .navbar-custom .nav .open > a:hover, .navbar-custom .sub-menu > li > a:focus, .navbar-custom .sub-menu > li > a:hover, .navbar-custom .nav > li > a:hover + .dropdownmenu, .navbar-custom .nav > li > ul > li > a:hover + .dropdownmenu, .navbar-custom .nav > li.open > a + .dropdownmenu, .navbar-custom .nav > li > ul > li.open > a + .dropdownmenu, .header-search:hover .header-search-button, .navbar-cart-inner .icon-basket:hover, .header-shopping-cart .widget.woocommerce a:hover, .header-shopping-cart .widget_shopping_cart .product_list_widget li a.remove:hover, .navbar-cart-inner:hover .icon-basket, .header-shopping-cart .widget_shopping_cart p.buttons a.wc-forward:hover { color: ' . esc_attr( $shop_isle_menu_items_hover_color ) . '; }';
 	}
 
 	if ( ! empty( $shop_isle_footer_background ) ) {
@@ -847,7 +858,7 @@ function shop_isle_pro_function_for_mega_menu() {
 		    color: #fff !important;
 		}
 		
-		@media (max-width: 767px) {
+		@media (max-width: 768px) {
 			.navbar-fixed-top .navbar-collapse {
 				' . $bg_dropdown . ' !important;
 			}

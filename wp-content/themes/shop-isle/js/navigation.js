@@ -3,11 +3,14 @@
 jQuery(window).load(function(){
 
     // product list
-    jQuery( '.page .products li, .single .products li, .post-type-archive-product .products li, .tax-product_cat .products li, .related.products .products li, #shop-isle-blog-container .products li, .upsells.products li, .products_shortcode .products li, .cross-sells .products li, .woocommerce.archive .products li' ).each( function(){
+    var pageWidth = window.innerWidth;
+    jQuery( '.page .products li, .single .products li, .post-type-archive-product .products li, .tax-product_cat .products li, .related.products .products li, #shop-isle-blog-container .products li, .upsells.products li, .products_shortcode .products li, .cross-sells .products li, .woocommerce.archive .products li, .dokan-store .products li' ).each( function(){
         jQuery( this ).find( '.button' ).wrapAll('<div class="product-button-wrap"></div>');
         jQuery( this ).find( '.product-button-wrap .ajax_add_to_cart, .product-button-wrap > a' ).wrap( '<div class="add-to-cart-button-wrap"></div>' );
         jQuery( this ).find( 'img' ).wrapAll( '<div class="prod-img-wrap"></div>' );
-        jQuery( this ).find( '.prod-img-wrap' ).append( jQuery(this).find( '.product-button-wrap' ) );
+        if (pageWidth > 768) {
+            jQuery( this ).find( '.prod-img-wrap' ).append( jQuery(this).find( '.product-button-wrap' ) );
+        }
     });
 
     if( jQuery('#latest').length > 0 ) {
@@ -15,10 +18,40 @@ jQuery(window).load(function(){
             jQuery( this ).find( '.product ' ).after( jQuery( this ).find( '.product .button' ) );
             jQuery( this ).find( '.button' ).wrapAll('<div class="product-button-wrap"></div>');
             jQuery( this ).find( '.product-button-wrap .ajax_add_to_cart, .product-button-wrap > a' ).wrap( '<div class="add-to-cart-button-wrap"></div>' );
-        } );
+        });
+        if (pageWidth <= 768) {
+            jQuery('.shop-item-detail').each(function() {
+                jQuery( this ).closest('.shop-item').append(this);
+            })
+        }
+    }
+
+    // add sidebar class to body
+    if ( jQuery( '.sidebar-shop' ).length ) {
+        jQuery('body').addClass('shopsidebar');
     }
 
 });
+
+jQuery(window).resize(function(){
+    var pageWidth = window.innerWidth;
+    jQuery( '.page .products li, .single .products li, .post-type-archive-product .products li, .tax-product_cat .products li, .related.products .products li, #shop-isle-blog-container .products li, .upsells.products li, .products_shortcode .products li, .cross-sells .products li, .woocommerce.archive .products li, .dokan-store .products li' ).each( function(){
+        if (pageWidth > 768) {
+            jQuery( this ).find( '.prod-img-wrap' ).append( jQuery(this).find( '.product-button-wrap' ) );
+        }
+        else {
+            jQuery( this ).find( '.woocommerce-loop-product__link' ).append( jQuery(this).find( '.product-button-wrap' ) );
+        }
+    })
+    jQuery('.shop-item-detail').each(function() {
+        if (pageWidth <= 768) {
+            jQuery( this ).closest('.shop-item').append(this);
+        }
+        else {
+            jQuery( this ).parent().find('.shop-item-image').append(this);
+        }
+    })
+})
 
 jQuery(document).ready(function(){
     var wooInfo = jQuery('.woocommerce-info');
@@ -54,26 +87,6 @@ jQuery(document).ready(function($){
 ( function($) {
 
     $( '.woocommerce-page-title' ).unwrap();
-
-    /* footer fixed  */
-    $( window ).load( fixFooterBottom );
-    $( window ).resize( fixFooterBottom );
-
-    function fixFooterBottom(){
-
-        $('div.main').css('min-height', '1px');
-        var pageWidth = window.innerWidth;
-
-        if (pageWidth > 768){
-            var bodyH   = $('div.main').outerHeight();
-            var bottomH = $('.bottom-page-wrap').outerHeight();
-            var windowH = $(window).outerHeight();
-            if ( bodyH + bottomH < windowH ){
-                $( 'div.main' ).css( 'min-height', windowH-bottomH );
-            }
-        }
-    }
-
 
     $( '.header-search-button' ).click( function() {
         $( '.header-search' ).toggleClass( 'header-search-open' );

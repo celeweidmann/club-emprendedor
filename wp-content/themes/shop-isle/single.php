@@ -18,7 +18,7 @@ get_header(); ?>
 				<div class="row">
 
 					<!-- Content column start -->
-					<div class="col-sm-8">
+					<div class="col-sm-8 shop-isle-page-content">
 
 						<?php
 						while ( have_posts() ) :

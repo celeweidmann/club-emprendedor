@@ -4,7 +4,6 @@
 
 .widget_layered_nav ul.colors li .box {
 	display: inline-block;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 1.618em;
 	height: 1.618em;

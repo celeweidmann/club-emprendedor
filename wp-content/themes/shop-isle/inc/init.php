@@ -89,6 +89,13 @@ if ( is_woocommerce_activated() ) {
 }
 
 /**
+ * Load Dokan compatibility file
+ */
+if ( class_exists( 'WeDevs_Dokan' ) ) {
+	require get_template_directory() . '/inc/dokan/functions.php';
+}
+
+/**
  * Checkout page
  * Move the coupon fild and message info after the order table
  **/

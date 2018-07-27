@@ -85,7 +85,6 @@ button.shop_isle_general_control_remove_field:hover {
 	background-image: -webkit-linear-gradient(to bottom, #f9f9f9, #ececec);
 	background-image: -webkit-linear-gradient(top, #f9f9f9, #ececec);
 	background-image: linear-gradient(to bottom, #f9f9f9, #ececec);
-	-webkit-box-shadow: inset 0 1px 0 #fff;
 	box-shadow: inset 0 1px 0 #fff;
 	font-weight: bold;
 	line-height: 40px !important;

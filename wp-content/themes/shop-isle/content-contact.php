@@ -28,7 +28,7 @@
 
 					if ( $is_content ) {
 
-						echo '<div class="col-xs-12 ' . ( $is_shotcode ? 'col-sm-6' : 'col-sm-12' ) . '">';
+						echo '<div class="col-xs-12 ' . ( $is_shotcode ? 'col-sm-6' : 'col-sm-12' ) . ' contact-page-content">';
 
 						the_content();
 
