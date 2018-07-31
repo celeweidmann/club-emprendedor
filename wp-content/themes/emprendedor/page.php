@@ -146,4 +146,4 @@ get_header(); ?>
 		<!-- Pricing end -->
 
 
-		<?php /*get_footer(); */?>
+		<?php get_footer();?>
