@@ -11,3 +11,21 @@
  Tags:         two-columns,one-column, grid-layout, right-sidebar, custom-background, custom-colors, custom-header, custom-menu, featured-images, full-width-template,footer-widgets,theme-options, translation-ready,e-commerce,blog,portfolio, threaded-comments
  Text Domain:  emprendedor
  */
+
+ /*listado de emprendedores*/
+ .custom-background {
+    background-image: none!important;
+ }
+ .page-template-template-listado-emprendedores .page-module-content a {
+    border: 1px solid #61ced0;
+    padding: 20px;
+    float: left;
+    margin: 5px; 
+}
+.page-template-template-listado-emprendedores .page-module-content a:hover {
+    background: #61ced0;
+    color: white;
+    -webkit-transition: background 1s;
+    transition: background 1s;
+    box-shadow: 5px 10px 10px #ccc;
+}
