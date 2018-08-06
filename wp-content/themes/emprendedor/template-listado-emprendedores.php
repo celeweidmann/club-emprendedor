@@ -75,7 +75,7 @@ get_header(); ?>
             <div class="col-sm-8">
             <div class="post-header font-alt">
                 <h2 class="post-title entry-title">
-                    <a href="#" rel="bookmark">Listado de Emprendedores</a>
+                    <p href="#" rel="bookmark">Listado de Emprendedores</p>
                 </h2>
             </div>
             <?php
