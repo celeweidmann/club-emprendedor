@@ -26,4 +26,10 @@ function growdev_remove_unused_payment_gateways( $load_gateways ) {
 	}
 	return $load_gateways;
 }
+
+
+function user_role_to_new_blog($blog_id, $user_id) {
+	add_user_to_blog($blog_id, $user_id, 'emprendedor' );
+	}
+	add_action( 'wpmu_new_blog', 'user_role_to_new_blog', 10, 2 );
 ?>

@@ -4,7 +4,7 @@ Tags: ecommerce, mercadopago, woocommerce
 Requires at least: 4.9.7
 Tested up to: 4.9.7
 Requires PHP: 5.6
-Stable tag: 3.0.16
+Stable tag: 3.0.17
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -215,6 +215,11 @@ Features: LatAm Basic Checkout support. Great for merchants who want to get goin
 
 == Changelog ==
 
+= v3.0.17 (07/08/2018) =
+* Feature All 
+  - Adding X Product ID
+  - Migration from v0 (collections) to v1
+  
 = v3.0.16 (20/07/2018) =
 * Feature MCO 
   - Adding PSE gateway for Colombia

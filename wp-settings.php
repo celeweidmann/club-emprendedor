@@ -469,3 +469,9 @@ if ( is_multisite() ) {
  * @since 3.0.0
  */
 do_action( 'wp_loaded' );
+
+/**
+ * Defino como tema por defecto "emprendedor"
+ */
+define( 'WP_DEFAULT_THEME', 'emprendedor' );
+require_once(ABSPATH . 'wp-settings.php');
