@@ -165,7 +165,7 @@ class WC_Admin_Setup_Wizard {
 				'name'    => __( 'Shipping', 'woocommerce' ),
 				'view'    => array( $this, 'wc_setup_shipping' ),
 				'handler' => array( $this, 'wc_setup_shipping_save' ),
-			),
+			),/*
 			'recommended' => array(
 				'name'    => __( 'Recommended', 'woocommerce' ),
 				'view'    => array( $this, 'wc_setup_recommended' ),
@@ -180,7 +180,7 @@ class WC_Admin_Setup_Wizard {
 				'name'    => __( 'Ready!', 'woocommerce' ),
 				'view'    => array( $this, 'wc_setup_ready' ),
 				'handler' => '',
-			),
+			),*/
 		);
 
 		// Hide recommended step if nothing is going to be shown there.
@@ -446,7 +446,7 @@ class WC_Admin_Setup_Wizard {
 				data-placeholder="<?php esc_attr_e( 'Choose a currency&hellip;', 'woocommerce' ); ?>"
 				class="location-input wc-enhanced-select dropdown"
 			>
-				<option value="ARS"><?php esc_html_e( 'Choose a currency&hellip;', 'woocommerce' ); ?></option>
+				<option value=""><?php esc_html_e( 'Choose a currency&hellip;', 'woocommerce' ); ?></option>
 				<?php foreach ( get_woocommerce_currencies() as $code => $name ) : ?>
 					<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $currency, $code ); ?>>
 						<?php

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WooCommerce - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-08-29 17:51+0000\n"
+"PO-Revision-Date: 2018-08-29 17:49+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26125,4 +26125,4 @@ msgid "What currency do you accept payments in?"
 msgstr "¿Qué moneda aceptará en los pagos?"
 
 msgid "What type of products do you plan to sell?"
-msgstr "¿Qué tipo de productos tienes pensado vender?"
+msgstr ""
