@@ -1,0 +1,16 @@
+.post-type-page .page-title-action {
+    display: none;
+}
+
+
+#wp-admin-bar-new-page > .ab-item {
+    display: none !important;
+}
+
+.wp-submenu > .pagina-new{
+    display: none;
+}
+
+.wp-submenu > .wp-first-item {
+    display: inherit;
+}

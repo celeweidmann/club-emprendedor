@@ -29,3 +29,11 @@
     transition: background 1s;
     box-shadow: 5px 10px 10px #ccc;
 }
+
+.post-type-page .page-title-action {
+    display: none;
+}
+#wp-admin-bar-new-page > .ab-item {
+    display: none !important;
+}
+

@@ -361,27 +361,39 @@ class WC_Admin_Setup_Wizard {
 		}
 		echo '</div>';
 	}
-
 	/**
 	 * Initial "store setup" step.
 	 * Location, product type, page setup, and tracking opt-in.
 	 */
 	public function wc_setup_store_setup() {
+		
 		$address        = WC()->countries->get_base_address();
 		$address_2      = WC()->countries->get_base_address_2();
 		$city           = WC()->countries->get_base_city();
 		$state          = WC()->countries->get_base_state();
-		$country        = WC()->countries->get_base_country();
+		//$country        = WC()->countries->get_base_country();
+		$country='AR';
+		$state='S';
 		$postcode       = WC()->countries->get_base_postcode();
-		$currency       = get_option( 'woocommerce_currency', 'GBP' );
-		$product_type   = get_option( 'woocommerce_product_type', 'both' );
+		//$currency     = get_option( 'woocommerce_currency', 'ARS' );
+		$currency		= get_option( 'woocommerce_currency', 'ARS');
+		//$product_type   = get_option( 'woocommerce_product_type', 'both' );
+		$product_type   = get_option( 'woocommerce_product_type', 'physical' );
 		$sell_in_person = get_option( 'woocommerce_sell_in_person', 'none_selected' );
 
+		/*
 		if ( empty( $country ) ) {
 			$user_location = WC_Geolocation::geolocate_ip();
 			$country       = $user_location['country'];
 			$state         = $user_location['state'];
 		}
+*/
+		//Club Emprendedor
+		//Por defecto aparece Santa Fe
+		//$country='AR';
+		//$state='S';
+		//$currency='gry7-ARS';
+
 
 		$locale_info         = include WC()->plugin_path() . '/i18n/locale-info.php';
 		$currency_by_country = wp_list_pluck( $locale_info, 'currency_code' );
@@ -393,7 +405,7 @@ class WC_Admin_Setup_Wizard {
 			<div class="store-address-container">
 
 				<label for="store_country" class="location-prompt"><?php esc_html_e( 'Where is your store based?', 'woocommerce' ); ?></label>
-				<select id="store_country" name="store_country" required data-placeholder="<?php esc_attr_e( 'Choose a country&hellip;', 'woocommerce' ); ?>" aria-label="<?php esc_attr_e( 'Country', 'woocommerce' ); ?>" class="location-input wc-enhanced-select dropdown">
+				<select id="store_country" name="store_country" required data-placeholder="<?php esc_attr_e( 'Choose a country&hellip;', 'woocommerce' ); ?>" aria-label="<?php esc_attr_e( 'Country', 'woocommerce' ); ?>" class="location-input wc-enhanced-select dropdown" >
 					<?php foreach ( WC()->countries->get_countries() as $code => $label ) : ?>
 						<option <?php selected( $code, $country ); ?> value="<?php echo esc_attr( $code ); ?>"><?php echo esc_html( $label ); ?></option>
 					<?php endforeach; ?>
@@ -434,7 +446,7 @@ class WC_Admin_Setup_Wizard {
 				data-placeholder="<?php esc_attr_e( 'Choose a currency&hellip;', 'woocommerce' ); ?>"
 				class="location-input wc-enhanced-select dropdown"
 			>
-				<option value=""><?php esc_html_e( 'Choose a currency&hellip;', 'woocommerce' ); ?></option>
+				<option value="ARS"><?php esc_html_e( 'Choose a currency&hellip;', 'woocommerce' ); ?></option>
 				<?php foreach ( get_woocommerce_currencies() as $code => $name ) : ?>
 					<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $currency, $code ); ?>>
 						<?php
