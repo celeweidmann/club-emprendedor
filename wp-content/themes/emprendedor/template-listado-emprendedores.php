@@ -81,7 +81,17 @@ get_header(); ?>
             <?php
             $sites = get_sites();
             foreach ( $sites as $site ): switch_to_blog( $site->blog_id ); ?>
-                <div><a href="<?php echo get_bloginfo( 'url' ); ?>" target="_blank"><?php echo get_bloginfo( 'name' ); ?></a></div>
+                <div>
+				<?php $emprende = get_bloginfo( 'admin_email' ); ?>
+				
+				
+					<a href="<?php echo get_bloginfo( 'url' ); ?>" target="_blank">
+					<?php echo get_avatar( $emprende, 100); ?>
+					<?php echo get_bloginfo( 'description' ); ?>
+						<?php echo get_bloginfo( 'name' ); ?>
+						
+					</a>
+				</div>
             <?php endforeach; ?>
 
             </div>
