@@ -16,13 +16,17 @@
  .custom-background {
     background-image: none!important;
  }
- .page-template-template-listado-emprendedores .page-module-content a {
+ .page-template-template-listado-emprendedores .page-module-content .emprendedor a,
+ .page-template-template-listado-artesania .page-module-content .emprendedor a,
+ .page-template-template-listado-textiles .page-module-content .emprendedor a {
     border: 1px solid #61ced0;
     padding: 20px;
     float: left;
     margin: 5px; 
 }
-.page-template-template-listado-emprendedores .page-module-content a:hover {
+.page-template-template-listado-emprendedores .page-module-content .emprendedor a:hover,
+.page-template-template-listado-artesania .page-module-content .emprendedor a:hover,
+.page-template-template-listado-textiles .page-module-content .emprendedor a:hover  {
     background: #61ced0;
     color: white;
     -webkit-transition: background 1s;

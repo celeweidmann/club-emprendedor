@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Listado de Emprendedores
+ * Template Name: Listado de Emprendedores Textiles
  */
 get_header(); ?>
 
@@ -73,31 +73,36 @@ get_header(); ?>
 
             <!-- Content column start -->
             <div class="col-sm-8 col-md-12">
-				<div class="post-header font-alt">
-					<h2 class="post-title entry-title">
-						<p href="#" rel="bookmark">Listado de Emprendedores</p>
-					</h2>
-				</div>
-				<div class="btn-group" role="group" aria-label="Basic example">
-					<a href="<?php echo get_option( 'siteurl' );?>/listado-de-sitios"><button type="button" class="btn btn-secondary">Todos</button></a>
-					<a href="<?php echo get_option( 'siteurl' );?>/emprendedores-alimentos"><button type="button" class="btn btn-secondary">Alimentos</button></a>
-					<a href="<?php echo get_option( 'siteurl' );?>/emprendedores-artesania"><button type="button" class="btn btn-secondary">Artesanías</button></a>
-					<a href="<?php echo get_option( 'siteurl' );?>/emprendedores-textiles"><button type="button" class="btn btn-secondary">Textiles</button></a>
-				</div>
-				<?php
-
+            <div class="post-header font-alt">
+                <h2 class="post-title entry-title">
+                    <p href="#" rel="bookmark">Listado de Emprendedores</p>
+                </h2>
+            </div>
+			<div class="btn-group" role="group" aria-label="Basic example">
+				<a href="<?php echo get_option( 'siteurl' );?>/listado-de-sitios"><button type="button" class="btn btn-secondary">Todos</button></a>
+				<a href="<?php echo get_option( 'siteurl' );?>/emprendedores-alimentos"><button type="button" class="btn btn-secondary">Alimentos</button></a>
+				<a href="<?php echo get_option( 'siteurl' );?>/emprendedores-artesania"><button type="button" class="btn btn-secondary">Artesanías</button></a>
+				<a href="<?php echo get_option( 'siteurl' );?>/emprendedores-textiles"><button type="button" class="btn btn-secondary">Textiles</button></a>
+			</div>
+			<?php
 				$sites = get_sites();
 				foreach ( $sites as $site ): switch_to_blog( $site->blog_id ); ?>
-					<div class="emprendedor col-md-3">
-						<?php $emprende = get_bloginfo( 'admin_email' ); ?>
-						<a href="<?php echo get_bloginfo( 'url' ); ?>" target="_blank">
-							<?php echo get_avatar( $emprende, 200); ?>
-							<?php echo get_bloginfo( 'name' ); ?>
-						</a>
-					</div>
+					<?php $emprende = get_bloginfo( 'admin_email' ); ?>
+					<?php $category = get_blog_option( $blog_id, 'site_category' ); ?>
+					<?php if ($category == 'textiles') :?>
+						<div class="emprendedor col-md-3">			
+							<a href="<?php echo get_bloginfo( 'url' ); ?>" target="_blank">
+								<?php echo get_avatar( $emprende, 200); ?>
+								<?php echo get_bloginfo( 'name' ); ?>
+							</a>
+						</div>
+					<?php endif;?>
 				<?php endforeach; ?>
 
-            </div><!-- Content column end -->
+			
+
+            </div>
+            <!-- Content column end -->
 
         </div><!-- .row -->
 

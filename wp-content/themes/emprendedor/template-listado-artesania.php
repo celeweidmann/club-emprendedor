@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Listado de Emprendedores
+ * Template Name: Listado de Emprendedores Artesania
  */
 get_header(); ?>
 
@@ -85,16 +85,18 @@ get_header(); ?>
 					<a href="<?php echo get_option( 'siteurl' );?>/emprendedores-textiles"><button type="button" class="btn btn-secondary">Textiles</button></a>
 				</div>
 				<?php
-
 				$sites = get_sites();
 				foreach ( $sites as $site ): switch_to_blog( $site->blog_id ); ?>
-					<div class="emprendedor col-md-3">
-						<?php $emprende = get_bloginfo( 'admin_email' ); ?>
-						<a href="<?php echo get_bloginfo( 'url' ); ?>" target="_blank">
-							<?php echo get_avatar( $emprende, 200); ?>
-							<?php echo get_bloginfo( 'name' ); ?>
-						</a>
-					</div>
+					<?php $emprende = get_bloginfo( 'admin_email' ); ?>
+					<?php $category = get_blog_option( $blog_id, 'site_category' ); ?>
+					<?php if ($category == 'artesania') :?>
+						<div class="emprendedor col-md-3">			
+							<a href="<?php echo get_bloginfo( 'url' ); ?>" target="_blank">
+								<?php echo get_avatar( $emprende, 200); ?>
+								<?php echo get_bloginfo( 'name' ); ?>
+							</a>
+						</div>
+					<?php endif;?>
 				<?php endforeach; ?>
 
             </div><!-- Content column end -->
