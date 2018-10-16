@@ -74,9 +74,7 @@ get_header(); ?>
             <!-- Content column start -->
             <div class="col-sm-8 col-md-12">
 				<div class="post-header font-alt">
-					<h2 class="post-title entry-title">
-						<p href="#" rel="bookmark">Listado de Emprendedores</p>
-					</h2>
+					<h2 class="post-title entry-title"><p href="#" rel="bookmark">Listado de Emprendedores</p></h2>
 				</div>
 				<div class="btn-group" role="group" aria-label="Basic example">
 					<a href="<?php echo get_option( 'siteurl' );?>/listado-de-sitios"><button type="button" class="btn btn-secondary">Todos</button></a>

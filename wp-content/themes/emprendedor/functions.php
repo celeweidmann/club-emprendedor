@@ -5,11 +5,13 @@ function emprendedor_style() {
 
 }
 
+/*
 add_filter( 'woocommerce_payment_gateways', 'growdev_remove_unused_payment_gateways', 20, 1 );
 /**
  *  This function will remove all of the WooCommerce standard gateways from the 
  *  WooCommerce > Settings > Checkout dashboard.
  */
+ /*
 function growdev_remove_unused_payment_gateways( $load_gateways ) {
 	$remove_gateways = array( 
 		'WC_Gateway_BACS',
@@ -26,7 +28,7 @@ function growdev_remove_unused_payment_gateways( $load_gateways ) {
 	}
 	return $load_gateways;
 }
-
+*/
 //Cambiar el usuario por defecto
 function user_role_to_new_blog($blog_id, $user_id) {
 	add_user_to_blog($blog_id, $user_id, 'emprendedor' );
